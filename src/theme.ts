@@ -1,12 +1,12 @@
-import { Theme } from '@emotion/react'
+import { Theme } from "@emotion/react";
 
 const theme: Theme = {
   colors: {
-    primary: 'lime',
-    surface1: '#333',
-    surface2: '#777',
-    text1: '#fff'
-  }
-}
+    primary: { surface: "#a00bdb", text: "#121212" },
+    dark: { surface: "#595a5c", text: "#fff" },
+    darker: { surface: "#333", text: "#fff" },
+    divider: "#88898a",
+  },
+};
 
-export default theme
+export default theme;

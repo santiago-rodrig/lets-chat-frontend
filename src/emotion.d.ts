@@ -1,12 +1,17 @@
-import '@emotion/react'
+import "@emotion/react";
 
-declare module '@emotion/react' {
+declare module "@emotion/react" {
+  interface ColorDetails {
+    surface: string;
+    text: string;
+  }
+
   export interface Theme {
     colors: {
-      primary: string
-      surface1: string
-      surface2: string
-      text1: string
-    }
+      primary: ColorDetails;
+      dark: ColorDetails;
+      darker: ColorDetails;
+      divider: string;
+    };
   }
 }

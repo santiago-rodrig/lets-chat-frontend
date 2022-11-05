@@ -1,1 +1,10 @@
 @import-normalize;
+@import "./reset.css";
+
+textarea {
+  resize: none;
+}
+
+img {
+  max-width: 100%;
+}
