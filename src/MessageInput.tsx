@@ -12,7 +12,7 @@ const MessageInput: FC<MessageInputProps> = ({ webSocketConnection }) => {
   const onKeyUp = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      webSocketConnection?.send(message);
+      webSocketConnection?.send(message.trim());
       setMessage("");
     }
   };
