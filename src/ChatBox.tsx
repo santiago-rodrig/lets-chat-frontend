@@ -1,10 +1,28 @@
 import styled from "@emotion/styled";
+import { connect } from "http2";
 import { FC, PropsWithChildren, useEffect, useRef, useState } from "react";
 import MessageInput from "./MessageInput";
 
 const ChatBox: FC = () => {
   const messagesBoxRef = useRef<HTMLDivElement | null>(null);
   const [heightMeasured, setHeightMeasured] = useState(false);
+  const webSocketConnectionRef = useRef<WebSocket>();
+
+  useEffect(() => {
+    if (window["WebSocket"] && webSocketConnectionRef.current === undefined) {
+      webSocketConnectionRef.current = new WebSocket("ws://localhost:8080/ws");
+      webSocketConnectionRef.current.onclose = () => {
+        console.log("connection terminated");
+      };
+      webSocketConnectionRef.current.onmessage = (e) => {
+        console.log("message received");
+        console.log(e.data);
+      };
+      webSocketConnectionRef.current.onopen = () => {
+        console.log("connection stablished");
+      };
+    }
+  }, [webSocketConnectionRef]);
 
   useEffect(() => {
     if (messagesBoxRef.current !== null) {
@@ -17,7 +35,7 @@ const ChatBox: FC = () => {
   return (
     <Container>
       <MessagesBox ref={messagesBoxRef}></MessagesBox>
-      <MessageInput />
+      <MessageInput webSocketConnection={webSocketConnectionRef.current} />
     </Container>
   );
 };

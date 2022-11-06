@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { ChangeEvent, FC, KeyboardEvent, useState } from "react";
 import SendIconSrc from "./send-icon.svg";
 
-const MessageInput: FC = () => {
+const MessageInput: FC<MessageInputProps> = ({ webSocketConnection }) => {
   const [message, setMessage] = useState("");
 
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -12,8 +12,7 @@ const MessageInput: FC = () => {
   const onKeyUp = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      console.log("TRIED TO SEND A MESSAGE");
-      console.log("MESSAGE:", message);
+      webSocketConnection?.send(message);
       setMessage("");
     }
   };
@@ -27,6 +26,10 @@ const MessageInput: FC = () => {
     </Container>
   );
 };
+
+interface MessageInputProps {
+  webSocketConnection?: WebSocket;
+}
 
 export default MessageInput;
 
