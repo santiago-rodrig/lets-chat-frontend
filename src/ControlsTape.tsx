@@ -11,12 +11,16 @@ const ControlsTape: FC = () => {
         </Button>
       </Box>
       <RightBox>
-        <Button>
-          <Icon src={sendIconSrc} />
-        </Button>
-        <Button>
-          <Icon src={sendIconSrc} />
-        </Button>
+        <Box>
+          <Button>
+            <Icon src={sendIconSrc} />
+          </Button>
+        </Box>
+        <Box>
+          <Button>
+            <Icon src={sendIconSrc} />
+          </Button>
+        </Box>
       </RightBox>
     </Container>
   );
@@ -32,13 +36,11 @@ const Container = styled.aside`
 
 const Box = styled.div`
   padding: 16px;
-  position: relative;
 `;
 
-const RightBox = styled(Box)`
+const RightBox = styled.div`
+  justify-self: flex-end;
   display: flex;
-  justify-content: space-around;
-  width: 80px;
 `;
 
 const Button = styled.button`
@@ -46,7 +48,9 @@ const Button = styled.button`
   cursor: pointer;
   border: none;
   position: relative;
-  width: 28px;
+  padding: none;
+  width: 32px;
+  height: 32px;
 
   &:hover {
     opacity: 0.75;
