@@ -1,24 +1,26 @@
 import { FC } from "react";
 import styled from "@emotion/styled";
-import sendIconSrc from "./send-icon.svg";
+import backIconSrc from "./back-icon.svg";
+import searchIconSrc from "./search-icon.svg";
+import menuIconSrc from "./menu-icon.svg";
 
 const ControlsTape: FC = () => {
   return (
     <Container>
       <Box>
         <Button>
-          <Icon src={sendIconSrc} />
+          <Icon src={backIconSrc} />
         </Button>
       </Box>
       <RightBox>
         <Box>
           <Button>
-            <Icon src={sendIconSrc} />
+            <Icon src={searchIconSrc} />
           </Button>
         </Box>
         <Box>
           <Button>
-            <Icon src={sendIconSrc} />
+            <Icon src={menuIconSrc} />
           </Button>
         </Box>
       </RightBox>
@@ -49,8 +51,8 @@ const Button = styled.button`
   border: none;
   position: relative;
   padding: none;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
 
   &:hover {
     opacity: 0.75;
