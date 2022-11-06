@@ -12,6 +12,7 @@ declare module "@emotion/react" {
       dark: ColorDetails;
       darker: ColorDetails;
       divider: string;
+      paper: ColorDetails;
     };
   }
 }

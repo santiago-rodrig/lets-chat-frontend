@@ -6,6 +6,7 @@ const theme: Theme = {
     dark: { surface: "#595a5c", text: "#fff" },
     darker: { surface: "#333", text: "#fff" },
     divider: "#88898a",
+    paper: { surface: "#e8e8e8", text: "#333" },
   },
 };
 

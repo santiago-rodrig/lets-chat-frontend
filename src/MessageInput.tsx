@@ -22,7 +22,7 @@ const MessageInput: FC = () => {
     <Container>
       <Input value={message} onChange={onChange} onKeyUp={onKeyUp} />
       <SubmitButton>
-        <img src={SendIconSrc} width={16} />
+        <img src={SendIconSrc} width={16} alt="Send icon" />
       </SubmitButton>
     </Container>
   );
@@ -31,8 +31,8 @@ const MessageInput: FC = () => {
 export default MessageInput;
 
 const Container = styled.div`
-  position: relative;
   height: 80px;
+  position: relative;
 `;
 
 const Input = styled.textarea`
@@ -44,7 +44,7 @@ const Input = styled.textarea`
   height: calc(100% - 32px);
   border: 1px solid ${(props) => props.theme.colors.divider};
   border-radius: 4px;
-  background-color: transparent;
+  background-color: ${(props) => props.theme.colors.dark.surface};
   color: ${(props) => props.theme.colors.dark.text};
   outline: none;
   padding: 8px;
