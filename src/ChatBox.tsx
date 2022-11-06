@@ -32,6 +32,12 @@ const ChatBox: FC = () => {
     }
   }, [messagesBoxRef]);
 
+  useEffect(() => {
+    return () => {
+      webSocketConnectionRef.current?.close();
+    };
+  }, []);
+
   return (
     <Container>
       <MessagesBox ref={messagesBoxRef}></MessagesBox>
