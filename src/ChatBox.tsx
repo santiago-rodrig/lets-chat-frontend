@@ -2,68 +2,6 @@ import styled from "@emotion/styled";
 import { FC, PropsWithChildren, useEffect, useRef, useState } from "react";
 import MessageInput from "./MessageInput";
 
-const dummyMessages = [
-  { id: 1, value: "Hey", issuer: "yolo99" },
-  { id: 2, value: "Hey! How are you doing?", issuer: "yourmom" },
-  {
-    id: 3,
-    value: "Doing fine, thanks for asking. How's your mom?",
-    issuer: "yolo99",
-  },
-  {
-    id: 4,
-    value: "She's also fine, I'll let her know you asked.",
-    issuer: "yourmom",
-  },
-  {
-    id: 5,
-    value: "She's also fine, I'll let her know you asked.",
-    issuer: "yourmom",
-  },
-  {
-    id: 6,
-    value: "She's also fine, I'll let her know you asked.",
-    issuer: "yourmom",
-  },
-  {
-    id: 7,
-    value: "She's also fine, I'll let her know you asked.",
-    issuer: "yourmom",
-  },
-  {
-    id: 8,
-    value: "She's also fine, I'll let her know you asked.",
-    issuer: "yourmom",
-  },
-  {
-    id: 9,
-    value: "She's also fine, I'll let her know you asked.",
-    issuer: "yourmom",
-  },
-  {
-    id: 10,
-    value: "She's also fine, I'll let her know you asked.",
-    issuer: "yourmom",
-  },
-  {
-    id: 11,
-    value: "She's also fine, I'll let her know you asked.",
-    issuer: "yourmom",
-  },
-  {
-    id: 12,
-    value: "She's also fine, I'll let her know you asked.",
-    issuer: "yourmom",
-  },
-  {
-    id: 13,
-    value: "She's also fine, I'll let her know you asked.",
-    issuer: "yourmom",
-  },
-];
-
-const currentUser = "yolo99";
-
 const ChatBox: FC = () => {
   const messagesBoxRef = useRef<HTMLDivElement | null>(null);
   const [heightMeasured, setHeightMeasured] = useState(false);
@@ -78,14 +16,7 @@ const ChatBox: FC = () => {
 
   return (
     <Container>
-      <MessagesBox ref={messagesBoxRef}>
-        {heightMeasured &&
-          dummyMessages.map((msg) => (
-            <Message key={msg.id} leftSide={msg.issuer === currentUser}>
-              {msg.value}
-            </Message>
-          ))}
-      </MessagesBox>
+      <MessagesBox ref={messagesBoxRef}></MessagesBox>
       <MessageInput />
     </Container>
   );
