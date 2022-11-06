@@ -1,11 +1,26 @@
 import styled from "@emotion/styled";
-import { FC } from "react";
+import { ChangeEvent, FC, KeyboardEvent, useState } from "react";
 import SendIconSrc from "./send-icon.svg";
 
 const MessageInput: FC = () => {
+  const [message, setMessage] = useState("");
+
+  const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(e.target.value);
+  };
+
+  const onKeyUp = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      console.log("TRIED TO SEND A MESSAGE");
+      console.log("MESSAGE:", message);
+      setMessage("");
+    }
+  };
+
   return (
     <Container>
-      <Input />
+      <Input value={message} onChange={onChange} onKeyUp={onKeyUp} />
       <SubmitButton>
         <img src={SendIconSrc} width={16} />
       </SubmitButton>
