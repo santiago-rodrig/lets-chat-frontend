@@ -1,28 +1,45 @@
 import styled from "@emotion/styled";
 import { connect } from "http2";
 import { FC, PropsWithChildren, useEffect, useRef, useState } from "react";
+import { useCookies } from "react-cookie";
 import MessageInput from "./MessageInput";
 
 const ChatBox: FC = () => {
   const messagesBoxRef = useRef<HTMLDivElement | null>(null);
   const [heightMeasured, setHeightMeasured] = useState(false);
   const webSocketConnectionRef = useRef<WebSocket>();
+  const [cookies, setCookie] = useCookies(["username"]);
+  const username = cookies["username"];
 
   useEffect(() => {
-    if (window["WebSocket"] && webSocketConnectionRef.current === undefined) {
-      webSocketConnectionRef.current = new WebSocket("ws://localhost:8080/ws");
-      webSocketConnectionRef.current.onclose = () => {
-        console.log("connection terminated");
-      };
-      webSocketConnectionRef.current.onmessage = (e) => {
-        console.log("message received");
-        console.log(e.data);
-      };
-      webSocketConnectionRef.current.onopen = () => {
-        console.log("connection stablished");
-      };
+    if (username === undefined || username === "") {
+      let newUsername = "";
+      while (newUsername === "") {
+        newUsername = prompt("Provide the username", "") || "";
+      }
+      setCookie("username", newUsername);
     }
-  }, [webSocketConnectionRef]);
+  }, [username]);
+
+  useEffect(() => {
+    if (username !== "" && username !== undefined) {
+      if (window["WebSocket"] && webSocketConnectionRef.current === undefined) {
+        webSocketConnectionRef.current = new WebSocket(
+          "ws://localhost:8080/ws"
+        );
+        webSocketConnectionRef.current.onclose = () => {
+          console.log("connection terminated");
+        };
+        webSocketConnectionRef.current.onmessage = (e) => {
+          console.log("message received");
+          console.log(e.data);
+        };
+        webSocketConnectionRef.current.onopen = () => {
+          console.log("connection stablished");
+        };
+      }
+    }
+  }, [webSocketConnectionRef, username]);
 
   useEffect(() => {
     if (messagesBoxRef.current !== null) {
